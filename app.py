@@ -9,7 +9,7 @@ spec = FlaskPydanticSpec('flask',
                          version='1.0.0', )
 spec.register(app)
 
-
+# Rota
 @app.route('/dias/<ano>-<mes>-<dia>', methods=['GET'])
 def data(ano, mes, dia):
 # Converter a string da data para formato datetime
@@ -62,16 +62,16 @@ def data(ano, mes, dia):
 
 
 
-
-
         # data_entrada = datetime.strptime(data_str, "%d/%m/%Y") # "%Y-%m-%d"
 
+        # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
             'Situacao': situacao,
             'Diferenca de dias': str(dias_diferenca),
             'Diferenca de meses': str(meses_diferenca),
             'Diferenca de anos': str(anos_diferenca),
         })
+    # Caso o valor escrito esteja errado
     except ValueError:
         return jsonify({'Erro': 'Formato de data incorreto'}), 400
 
