@@ -12,7 +12,7 @@ spec.register(app)
 # Rota
 @app.route('/dias/<ano>-<mes>-<dia>', methods=['GET'])
 def data(ano, mes, dia):
-# Converter a string da data para formato datetime
+# Exemplo
     """
         API para calcular a diferença entre duas datas.
 
@@ -41,16 +41,21 @@ def data(ano, mes, dia):
     try:
         data_atual = datetime.now()
 
+        # Converter a string da data para formato datetime
         data_recebida = datetime(int(ano), int(mes), int(dia)).date()
 
+        # Irá diferenciar os dias
         dias_diferenca = data_recebida.day - data_atual.date().day
 
+        # Irá diferenciar os meses
         meses_diferenca = data_recebida.month - data_atual.date().month
 
+        # Irá diferenciar os anos
         anos_diferenca = data_recebida.year - data_atual.date().year
 
         situacao = ''
 
+        # Irão preencher a variável 'situacao'
         if data_recebida > data_atual.date():
             situacao = 'Futuro'
 
@@ -61,8 +66,6 @@ def data(ano, mes, dia):
             situacao = 'Presente'
 
 
-
-        # data_entrada = datetime.strptime(data_str, "%d/%m/%Y") # "%Y-%m-%d"
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
