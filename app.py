@@ -1,17 +1,18 @@
 from flask import Flask, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
-import datetime
+from datetime import datetime
+
 app = Flask(__name__)
 
 spec = FlaskPydanticSpec('flask',
                          title='First API - SENAI',
-                         version='1.0.0',)
+                         version='1.0.0', )
 spec.register(app)
 
 
-@app.route('/dias/<data_str>', methods=['GET'])
-def dias_valores(data_str):
-    # Converter a string da data para formato datetime
+@app.route('/dias/<ano>-<mes>-<dia>', methods=['GET'])
+def data(ano, mes, dia):
+# Converter a string da data para formato datetime
     """
         API para calcular a diferença entre duas datas.
 
@@ -38,17 +39,41 @@ def dias_valores(data_str):
     """
 
     try:
-        data_entrada = datetime.strptime(data_str, "%d/%m/%Y") # "%Y-%m-%d"
+        data_atual = datetime.now()
+
+        data_recebida = datetime(int(ano), int(mes), int(dia)).date()
+
+        dias_diferenca = data_recebida - data_atual.date()
+
+        meses_diferenca = data_recebida - data_atual.date()
+
+        anos_diferenca = data_recebida - data_atual.date()
+
+        situacao = ''
+
+        if data_recebida > data_atual.date():
+            situacao = 'Futuro'
+
+        elif data_recebida < data_atual.date():
+            situacao = 'Passado'
+
+        elif data_recebida == data_atual.date():
+            situacao = 'Presente'
+
+
+
+
+
+        # data_entrada = datetime.strptime(data_str, "%d/%m/%Y") # "%Y-%m-%d"
+
+        return jsonify({
+            'Situacao': situacao,
+            'Diferenca de dias': str(dias_diferenca),
+            'Diferenca de meses': str(meses_diferenca),
+            'Diferenca de anos': str(anos_diferenca),
+        })
     except ValueError:
-        return jsonify({"erro": "Formato de data incorreto"}), 400
-# Tempo atual
-@app.route('/dia_atual')
-def dia_atual():
-    atual = datetime.datetime.now()
-    atual = atual.strftime('%d/%m/%Y | %H:%M:%S')
-    return jsonify({"Tempo atual": atual}), 200
-
-
+        return jsonify({'Erro': 'Formato de data incorreto'}), 400
 
 
 if __name__ == '__main__':
