@@ -1,5 +1,5 @@
 # Importar biblioteca
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 
 # Importe para documentação
 from flask_pydantic_spec import FlaskPydanticSpec
@@ -38,6 +38,11 @@ def validado(ano, mes, dia):
         # Days =
         dias = datetime.today().date() - relativedelta(days=prazo)
 
+        if cadastro.month < prazo:
+
+
+
+
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
                 "Antes":  str(datetime.today().strftime("%d-%m-%Y")),
@@ -50,6 +55,8 @@ def validado(ano, mes, dia):
     # Caso o valor escrito esteja errado
     except ValueError:
         return jsonify({'Erro': 'Formato de data incorreto'}), 400
+
+
 
 # iniciar servidor
 if __name__ == '__main__':
