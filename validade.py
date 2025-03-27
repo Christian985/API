@@ -19,7 +19,7 @@ spec = FlaskPydanticSpec('flask',
 spec.register(app)
 
 
-@app.route('/validadealunos/<ano><mes><dia>', methods=['GET'])
+@app.route('/validadealunos/<ano>-<mes>-<dia>', methods=['GET'])
 def validado(ano, mes, dia):
     try:
         prazo = 12
@@ -27,30 +27,29 @@ def validado(ano, mes, dia):
         cadastro = datetime(int(ano), int(mes), int(dia)).date()
 
         # Months
-        meses = cadastro.today() + relativedelta(months=prazo)
+        meses = datetime.today().date() - relativedelta(months=prazo)
 
         # Years =
-        anos = cadastro.today() + relativedelta(years=prazo)
+        anos = datetime.today().date() - relativedelta(years=prazo)
 
         # Weeks =
-        semanas = cadastro.today() + relativedelta(weeks=prazo)
+        semanas = datetime.today().date() - relativedelta(weeks=prazo)
 
         # Days =
-        dias = cadastro.today() + relativedelta(days=prazo)
+        dias = datetime.today().date() - relativedelta(days=prazo)
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
-                f'"Antes" - {abs(datetime.today().strftime("%d-%m-%Y"))}, '
-                f'"Cadastro"- {cadastro}, '
-                f'"Dias"- {dias}, '
-                f'"Semanas"- {semanas}, '
-                f'"Meses"- {meses},'
-                f'"Anos"- {anos} '
+                "Antes":  str(datetime.today().strftime("%d-%m-%Y")),
+                "Cadastro": str(cadastro),
+                "Dias": str(dias),
+                "Semanas": str(semanas),
+                "Meses": str(meses),
+                "Anos": str(anos)
         })
     # Caso o valor escrito esteja errado
     except ValueError:
         return jsonify({'Erro': 'Formato de data incorreto'}), 400
-
 
 # iniciar servidor
 if __name__ == '__main__':
