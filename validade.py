@@ -1,17 +1,18 @@
-# importar biblioteca
+# Importar biblioteca
 from flask import Flask, jsonify, render_template
-# importe para documentacao
+
+# Importe para documentação
 from flask_pydantic_spec import FlaskPydanticSpec
 import datetime
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-# [flask routes] para listar rotas da api
+# [Flask routes] para listar rotas da API
 
-# criar variavel para receber a classe Flask
+# Criar variável para receber a classe Flask
 app = Flask(__name__)
 
-#   documentacao OpenAPI
+# Documentação OpenAPI
 spec = FlaskPydanticSpec('flask',
                          title='First API - SENAI',
                          version='1.0.0')
@@ -19,20 +20,28 @@ spec.register(app)
 
 @app.route('/validadealunos')
 def validado():
-    prazo = 12
-    meses = datetime.today()+relativedelta(months=prazo)
-    # years=
-    anos = ''
-    # weeks=
-    semanas = ''
-    # days=
-    dias = ''
+    try:
+        prazo = 12
+        meses = datetime.today()+relativedelta(months=prazo)
+        # years=
+        anos = datetime.now()+relativedelta(years=prazo)
+        # weeks=
+        semanas = ''
+        # days=
+        dias = ''
 
-    return (f'"antes" - {datetime.today().strftime("%d-%m-%Y")}, '
-            f'"dias"- {dias}, '
-            f'"semanas"- {semanas}, '
-            f'"meses"- {meses},'
-            f'"anos"- {anos}')
+        # Irá retornar o Jsonify e mostrará os resultados
+        return jsonify({
+                f'"Antes" - {datetime.today().strftime("%d-%m-%Y")}, '
+                f'"Prazo" - {prazo}, '
+                f'"Dias"- {dias}, '
+                f'"Semanas"- {semanas}, '
+                f'"Meses"- {meses},'
+                f'"Anos"- {anos}'
+        })
+    # Caso o valor escrito esteja errado
+    except ValueError:
+        return jsonify({'Erro': 'Formato de data incorreto'}), 400
 
 
 # iniciar servidor
