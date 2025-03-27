@@ -43,11 +43,11 @@ def data(ano, mes, dia):
 
         data_recebida = datetime(int(ano), int(mes), int(dia)).date()
 
-        dias_diferenca = data_recebida - data_atual.date()
+        dias_diferenca = data_recebida.day - data_atual.date().day
 
-        meses_diferenca = data_recebida - data_atual.date()
+        meses_diferenca = data_recebida.month - data_atual.date().month
 
-        anos_diferenca = data_recebida - data_atual.date()
+        anos_diferenca = data_recebida.year - data_atual.date().year
 
         situacao = ''
 
@@ -67,9 +67,9 @@ def data(ano, mes, dia):
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
             'Situacao': situacao,
-            'Diferenca de dias': str(dias_diferenca),
-            'Diferenca de meses': str(meses_diferenca),
-            'Diferenca de anos': str(anos_diferenca),
+            'Diferenca de dias': str(abs(dias_diferenca)),
+            'Diferenca de meses': str(abs(meses_diferenca)),
+            'Diferenca de anos': str(abs(anos_diferenca)),
         })
     # Caso o valor escrito esteja errado
     except ValueError:
