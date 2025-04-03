@@ -18,17 +18,24 @@ spec = FlaskPydanticSpec('flask',
 spec.register(app)
 
 # Rota
-@app.route('/validadealunos/<ano>-<mes>-<dia>', methods=['GET'])
-def validado(ano, mes, dia):
+@app.route('/validadealunos/<ano>-<mes>-<dia>/<qtd>/<tipo>', methods=['GET'])
+def validado(ano, mes, dia, qtd, tipo):
     try:
         # Diferença em dias/meses/anos
-        prazo = 11
+        prazo = 5
 
         data_atual = datetime.now()
 
         # Converter a string da data para formato datetime
         cadastro_produto = datetime(int(ano), int(mes), int(dia)).date()
         # validade = datetime(int(2028), int(2), int(25)).date()
+
+        if tipo == 'dia':
+            dias = datetime.today().date() + relativedelta(days=int(qtd))
+        elif tipo == 'mes':
+            meses = datetime.today().date() + relativedelta(months=int(qtd))
+        elif tipo == 'ano':
+            dias = datetime.today().date() + relativedelta(days=prazo)
 
         # Years
         anos = datetime.today().date() + relativedelta(years=prazo)
@@ -41,36 +48,13 @@ def validado(ano, mes, dia):
 
         validade = datetime.today().date() + relativedelta(anos, meses, dias)
 
-        situacao = ''
-
-
-
-        # Irão preencher a variável 'situacao'
-        if cadastro_produto <= data_atual.date():
-            situacao = 'No prazo'
-
-        elif cadastro_produto > data_atual.date():
-            situacao = 'Vencido'
-
-
-
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
-            "Situacao": situacao,
-
             'Validade': validade.strftime('%Y/%m/%d'),
 
             "Data atual": data_atual.strftime("%Y/%m/%d"),
 
-            "Cadastro de produto": str(cadastro_produto),
-
-
-
-            "Dias - prazo": str(dias.strftime("%d")),
-
-            "Meses - prazo": str(meses.strftime("%m")),
-
-            "Anos - prazo": str(anos.strftime("%Y")),
+            "prazo": str(cadastro_produto),
 
         })
     # Caso o valor escrito esteja errado
