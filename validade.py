@@ -22,12 +22,13 @@ spec.register(app)
 def validado(ano, mes, dia):
     try:
         # Diferença em dias/meses/anos
-        prazo = 12
+        prazo = 11
 
         data_atual = datetime.now()
 
         # Converter a string da data para formato datetime
         cadastro_produto = datetime(int(ano), int(mes), int(dia)).date()
+        # validade = datetime(int(2028), int(2), int(25)).date()
 
         # Years
         anos = datetime.today().date() + relativedelta(years=prazo)
@@ -38,9 +39,11 @@ def validado(ano, mes, dia):
         # Days
         dias = datetime.today().date() + relativedelta(days=prazo)
 
+        validade = datetime.today().date() + relativedelta(anos, meses, dias)
+
         situacao = ''
 
-        validade = cadastro_produto
+
 
         # Irão preencher a variável 'situacao'
         if cadastro_produto <= data_atual.date():
@@ -49,31 +52,26 @@ def validado(ano, mes, dia):
         elif cadastro_produto > data_atual.date():
             situacao = 'Vencido'
 
-        # if cadastro_produto.day == dias.date and cadastro_produto.month == meses.month and cadastro_produto.year == anos.year:
-
-
-
-
-
 
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
-            "situacao": situacao,
+            "Situacao": situacao,
+
+            'Validade': validade.strftime('%Y/%m/%d'),
 
             "Data atual": data_atual.strftime("%Y/%m/%d"),
 
             "Cadastro de produto": str(cadastro_produto),
 
-            "Dias teste - prazo": str(dias.strftime("%d")),
 
-            # "Semanas": str(semanas),
 
-            "Meses teste - prazo": str(meses.strftime("%m")),
+            "Dias - prazo": str(dias.strftime("%d")),
 
-            "Anos teste - prazo": str(anos.strftime("%Y")),
+            "Meses - prazo": str(meses.strftime("%m")),
 
-            "Validade": str(validade())
+            "Anos - prazo": str(anos.strftime("%Y")),
+
         })
     # Caso o valor escrito esteja errado
     except ValueError:
