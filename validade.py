@@ -24,6 +24,7 @@ def validado(ano, mes, dia):
     try:
         prazo = 12
 
+        data_atual = datetime.now()
         cadastro = datetime(int(ano), int(mes), int(dia)).date()
 
         # Months
@@ -38,18 +39,25 @@ def validado(ano, mes, dia):
         # Days =
         dias = datetime.today().date() - relativedelta(days=prazo)
 
-        if cadastro.month < prazo:
+
 
 
 
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
-                "Antes":  str(datetime.today().strftime("%d-%m-%Y")),
+                "Antes":  str(datetime.today().strftime("%Y-%m-%d")),
+
+                "data_atual": data_atual.strftime("%d-%m-%Y"),
+
                 "Cadastro": str(cadastro),
+
                 "Dias": str(dias),
+
                 "Semanas": str(semanas),
+
                 "Meses": str(meses),
+
                 "Anos": str(anos)
         })
     # Caso o valor escrito esteja errado
