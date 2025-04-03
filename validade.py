@@ -21,16 +21,8 @@ spec.register(app)
 @app.route('/validadealunos/<ano>-<mes>-<dia>/<qtd>/<tipo>', methods=['GET'])
 def validado(ano, mes, dia, qtd, tipo):
     try:
-        # Diferença em dias/meses/anos
-        prazo = 5
-
-        data_atual = datetime.now()
-
         # Converter a string da data para formato datetime
         cadastro_produto = datetime(int(ano), int(mes), int(dia)).date()
-        # validade = datetime(int(2028), int(2), int(25)).date()
-
-        validade = 0
 
         if tipo == 'dia':
             validade = cadastro_produto + relativedelta(days=int(qtd))
@@ -40,7 +32,7 @@ def validado(ano, mes, dia, qtd, tipo):
             validade = cadastro_produto + relativedelta(years=int(qtd))
         else:
             return jsonify({
-                'mensagem': 'Erro de tipo',
+                'Mensagem': 'Erro de tipo',
             })
 
 
