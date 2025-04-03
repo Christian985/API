@@ -40,14 +40,14 @@ def validado(ano, mes, dia):
 
         situacao = ''
 
-        validade = cadastro_produto + prazo
+        validade = cadastro_produto
 
         # Irão preencher a variável 'situacao'
         if cadastro_produto <= data_atual.date():
-            situacao = 'Vencido'
+            situacao = 'No prazo'
 
         elif cadastro_produto > data_atual.date():
-            situacao = 'No prazo'
+            situacao = 'Vencido'
 
         # if cadastro_produto.day == dias.date and cadastro_produto.month == meses.month and cadastro_produto.year == anos.year:
 
