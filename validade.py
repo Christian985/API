@@ -1,6 +1,5 @@
 # Importar biblioteca
 from flask import Flask, jsonify
-
 # Importe para documentação
 from flask_pydantic_spec import FlaskPydanticSpec
 import datetime
@@ -18,27 +17,38 @@ spec = FlaskPydanticSpec('flask',
                          version='1.0.0')
 spec.register(app)
 
-
+# Rota
 @app.route('/validadealunos/<ano>-<mes>-<dia>', methods=['GET'])
 def validado(ano, mes, dia):
     try:
-        prazo = 12
+        # Diferença em dias/meses/anos
+        prazo = 1
 
         data_atual = datetime.now()
-        # Converter a string da data para formato datetime
-        cadastro = datetime(int(ano), int(mes), int(dia)).date()
 
-        # Years =
+        # Converter a string da data para formato datetime
+        cadastro_produto = datetime(int(ano), int(mes), int(dia)).date()
+
+        # Years
         anos = datetime.today().date() - relativedelta(years=prazo)
 
         # Months
         meses = datetime.today().date() - relativedelta(months=prazo)
 
-        # Weeks =
-        semanas = datetime.today().date() - relativedelta(weeks=prazo)
-
-        # Days =
+        # Days
         dias = datetime.today().date() - relativedelta(days=prazo)
+
+        situacao = ''
+
+        # Irão preencher a variável 'situacao'
+        if cadastro_produto <= data_atual.date():
+            situacao = 'Vencido'
+
+        elif cadastro_produto > data_atual.date():
+            situacao = 'No prazo'
+
+        # if cadastro_produto.day == dias.date and cadastro_produto.month == meses.month and cadastro_produto.year == anos.year:
+
 
 
 
@@ -47,19 +57,21 @@ def validado(ano, mes, dia):
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
+                'situacao': situacao,
+
                 "Antes":  str(datetime.today().strftime("%Y-%m-%d")),
 
                 "data_atual": data_atual.strftime("%d-%m-%Y"),
 
-                "Cadastro": str(cadastro),
+                "Cadastro de produto": str(cadastro_produto),
 
-                "Dias": str(dias),
+                "Dias teste - prazo": str(dias.strftime("%d")),
 
-                "Semanas": str(semanas),
+                # "Semanas": str(semanas),
 
-                "Meses": str(meses),
+                "Meses teste - prazo": str(meses.strftime("%m")),
 
-                "Anos": str(anos)
+                "Anos teste - prazo": str(anos.strftime("%Y")),
         })
     # Caso o valor escrito esteja errado
     except ValueError:
