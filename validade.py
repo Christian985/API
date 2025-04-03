@@ -22,7 +22,7 @@ spec.register(app)
 def validado(ano, mes, dia):
     try:
         # Diferença em dias/meses/anos
-        prazo = 1
+        prazo = 12
 
         data_atual = datetime.now()
 
@@ -30,15 +30,17 @@ def validado(ano, mes, dia):
         cadastro_produto = datetime(int(ano), int(mes), int(dia)).date()
 
         # Years
-        anos = datetime.today().date() - relativedelta(years=prazo)
+        anos = datetime.today().date() + relativedelta(years=prazo)
 
         # Months
-        meses = datetime.today().date() - relativedelta(months=prazo)
+        meses = datetime.today().date() + relativedelta(months=prazo)
 
         # Days
-        dias = datetime.today().date() - relativedelta(days=prazo)
+        dias = datetime.today().date() + relativedelta(days=prazo)
 
         situacao = ''
+
+        validade = cadastro_produto + prazo
 
         # Irão preencher a variável 'situacao'
         if cadastro_produto <= data_atual.date():
@@ -57,21 +59,21 @@ def validado(ano, mes, dia):
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
-                'situacao': situacao,
+            "situacao": situacao,
 
-                "Antes":  str(datetime.today().strftime("%Y-%m-%d")),
+            "Data atual": data_atual.strftime("%Y/%m/%d"),
 
-                "data_atual": data_atual.strftime("%d-%m-%Y"),
+            "Cadastro de produto": str(cadastro_produto),
 
-                "Cadastro de produto": str(cadastro_produto),
+            "Dias teste - prazo": str(dias.strftime("%d")),
 
-                "Dias teste - prazo": str(dias.strftime("%d")),
+            # "Semanas": str(semanas),
 
-                # "Semanas": str(semanas),
+            "Meses teste - prazo": str(meses.strftime("%m")),
 
-                "Meses teste - prazo": str(meses.strftime("%m")),
+            "Anos teste - prazo": str(anos.strftime("%Y")),
 
-                "Anos teste - prazo": str(anos.strftime("%Y")),
+            "Validade": str(validade())
         })
     # Caso o valor escrito esteja errado
     except ValueError:
