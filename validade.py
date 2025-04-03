@@ -30,31 +30,30 @@ def validado(ano, mes, dia, qtd, tipo):
         cadastro_produto = datetime(int(ano), int(mes), int(dia)).date()
         # validade = datetime(int(2028), int(2), int(25)).date()
 
+        validade = 0
+
         if tipo == 'dia':
-            dias = datetime.today().date() + relativedelta(days=int(qtd))
+            validade = cadastro_produto + relativedelta(days=int(qtd))
         elif tipo == 'mes':
-            meses = datetime.today().date() + relativedelta(months=int(qtd))
+            validade = cadastro_produto + relativedelta(months=int(qtd))
         elif tipo == 'ano':
-            dias = datetime.today().date() + relativedelta(days=prazo)
+            validade = cadastro_produto + relativedelta(years=int(qtd))
+        else:
+            return jsonify({
+                'mensagem': 'Erro de tipo',
+            })
 
-        # Years
-        anos = datetime.today().date() + relativedelta(years=prazo)
 
-        # Months
-        meses = datetime.today().date() + relativedelta(months=prazo)
-
-        # Days
-        dias = datetime.today().date() + relativedelta(days=prazo)
-
-        validade = datetime.today().date() + relativedelta(anos, meses, dias)
 
         # Irá retornar o Jsonify e mostrará os resultados
         return jsonify({
             'Validade': validade.strftime('%Y/%m/%d'),
 
-            "Data atual": data_atual.strftime("%Y/%m/%d"),
+            "Data_fabricacao": cadastro_produto.strftime("%Y/%m/%d"),
 
-            "prazo": str(cadastro_produto),
+            "prazo": int(qtd),
+
+            'tipo': tipo,
 
         })
     # Caso o valor escrito esteja errado
