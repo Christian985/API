@@ -25,13 +25,14 @@ def validado(ano, mes, dia):
         prazo = 12
 
         data_atual = datetime.now()
+        # Converter a string da data para formato datetime
         cadastro = datetime(int(ano), int(mes), int(dia)).date()
-
-        # Months
-        meses = datetime.today().date() - relativedelta(months=prazo)
 
         # Years =
         anos = datetime.today().date() - relativedelta(years=prazo)
+
+        # Months
+        meses = datetime.today().date() - relativedelta(months=prazo)
 
         # Weeks =
         semanas = datetime.today().date() - relativedelta(weeks=prazo)
