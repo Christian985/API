@@ -43,9 +43,9 @@ def validado(ano, mes, dia, qtd, tipo):
 
             "Data_fabricacao": cadastro_produto.strftime("%Y/%m/%d"),
 
-            "prazo": int(qtd),
+            "Prazo": int(qtd),
 
-            'tipo': tipo,
+            'Tipo': tipo,
 
         })
     # Caso o valor escrito esteja errado
