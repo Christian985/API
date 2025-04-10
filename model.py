@@ -7,6 +7,13 @@ db_session = scoped_session(sessionmaker(bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
 
+# Método para criar banco
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
+if __name__ == '__main__':
+    init_db()
+
 # Base_declarativa - Ela permite que você defina classes Python que representam tabelas de
 # banco de dados de forma declarativa, sem a necessidade de configurar manualmente a
 # relação entre as classes e as tabelas.
@@ -15,8 +22,8 @@ class Ativadade(Base):
     __tablename__ = 'ativadade'
     id = Column(Integer, primary_key=True)
     nome = Column(String(80))
-    pessoa_id = Column(Integer, ForeignKey('pessoa.id'))
-    pessoas = relationship('Pessoa')
+    cliente_id = Column(Integer, ForeignKey('clientes.id'))
+    clientes = relationship('Cliente')
 
 class Veiculo():
     __tablename__ = 'Veiculos'
@@ -49,9 +56,3 @@ def serialize_user(self):
     }
     return dados_user
 
-# Método para criar banco
-def init_db():
-    Base.metadata.create_all(bind=engine)
-
-if __name__ == '__main__':
-    init_db()
