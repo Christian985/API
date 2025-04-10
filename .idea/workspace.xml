@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf318518-ba9c-4ef8-9e36-53d097a671f4" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/aposentadoria.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oficina.py" beforeDir="false" afterPath="$PROJECT_DIR$/oficina.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +103,7 @@
       <workItem from="1743158669978" duration="1885000" />
       <workItem from="1743613847533" duration="58000" />
       <workItem from="1743614436859" duration="3953000" />
+      <workItem from="1743762695061" duration="2652000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
