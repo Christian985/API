@@ -1,3 +1,5 @@
+from sqlalchemy import create_engine
+from
 from flask import Flask, render_template, request, redirect, url_for, request, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
 
@@ -8,21 +10,21 @@ spec = FlaskPydanticSpec('flask',
                          version='1.0.0', )
 spec.register(app)
 
+
+def validar_cliente(cliente):
+
+
+
 @app.route('/clientes', methods=['GET'])
 def clientes():
-    __tablename__ = 'clientes'
-    id = db.Collumn(db.Integer, primary_key=True)
-    nome = db.Collumn(db.String(100), nullable=False)
-    email = db.Collumn(db.String(100), nullable=False)
+
 
 
 
 
 @app.route('/veiculos', methods=['GET'])
 def veiculos():
-    id = db.Collumn(db.Integer, primary_key=True)
-    name = db.Collumn(db.String(100), nullable=False)
-    marca = db.Collumn(db.String(100), nullable=False)
+
 
 
 
