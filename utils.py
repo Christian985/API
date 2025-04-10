@@ -1,6 +1,8 @@
-from model import Cliente, db_session
+from models import Cliente, db_session
 from sqlalchemy import select
 
+
+# Inserir dados na tabela
 def inserir_cliente():
     cliente = Cliente(nome=str(input('Nome: ')),
                       email=str(input('E-Mail: '))
@@ -40,3 +42,13 @@ if __name__ == '__main__':
         print('4 - Deletar Cliente')
         print('5 - Sair')
         escolha = input('Escolha: ')
+        if escolha == '1':
+            inserir_cliente()
+        elif escolha == '2':
+            consultar_cliente()
+        elif escolha == '3':
+            atualizar_cliente()
+        elif escolha == '4':
+            deletar_cliente()
+        elif escolha == '5':
+            break

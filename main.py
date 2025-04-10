@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from model import Veiculo, Cliente
+from models import Veiculo, Cliente
 from flask import Flask, render_template, request, redirect, url_for, request, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
 

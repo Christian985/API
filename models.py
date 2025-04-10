@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base, relationship
 
-engine = create_engine('sqlite:///nome.sqlite3')
+engine = create_engine('sqlite:///atividades.sqlite3')
 db_session = scoped_session(sessionmaker(bind=engine))
 
 Base = declarative_base()
@@ -19,7 +19,7 @@ if __name__ == '__main__':
 # relação entre as classes e as tabelas.
 
 class Ativadade(Base):
-    __tablename__ = 'ativadade'
+    __tablename__ = 'ativadades'
     id = Column(Integer, primary_key=True)
     nome = Column(String(80))
     cliente_id = Column(Integer, ForeignKey('clientes.id'))
@@ -37,22 +37,25 @@ class Cliente():
     nome = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
 
-# Função para salvar no banco
-def save(self):
-    db_session.add(self)
-    db_session.commit()
+    # Representação classe
+    def __repr__(self):
+        return '<Cliente: {} {}>'.format(self.nome, self.email)
 
-# Função para deletar
-def delete(self):
-    db_session.delete(self)
-    db_session.commit()
+    # Função para salvar no banco
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
 
-def serialize_user(self):
-    dados_user = {
-        'id': self.id,
-        'nome': self.nome,
-        'email': self.email,
-        'marca': self.marca
-    }
-    return dados_user
+    # Função para deletar
+    def delete(self):
+        db_session.delete(self)
+        db_session.commit()
+
+    def serialize_user(self):
+        dados_user = {
+            'id': self.id,
+            'nome': self.nome,
+            'email': self.email,
+        }
+        return dados_user
 
