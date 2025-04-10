@@ -30,7 +30,7 @@ def veiculos():
 
 @app.route('/ordem', methods=['GET'])
 def ordens_servicos():
-    return ('ordems')
+    return ('ordem')
 
 
 if __name__ == '__main__':
