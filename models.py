@@ -27,6 +27,10 @@ class Veiculo(Base):
     ano_fabricacao = Column(String(100), nullable=False, index=True)
     marca = Column(String(100), nullable=False, index=True)
 
+    # Representação classe
+    def __repr__(self):
+        return '<Veiculo: {} {} {} {} {}>'.format(self.cliente_associado, self.modelo, self.placa, self.ano_fabricacao, self.marca)
+
 
 # Cliente
 class Cliente(Base):
@@ -38,7 +42,7 @@ class Cliente(Base):
 
     # Representação classe
     def __repr__(self):
-        return '<Cliente: {} {}>'.format(self.nome, self.email, self.endereco)
+        return '<Cliente: {} {} {}>'.format(self.nome, self.email, self.endereco)
 
     # Função para salvar no banco
     def save(self):
