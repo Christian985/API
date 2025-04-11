@@ -1,8 +1,8 @@
-from models import Cliente, db_session
+from models import Cliente, Veiculo, db_session, Ordem_servicos
 from sqlalchemy import select
 
 
-# Inserir dados na tabela
+# Inserir dados do Cliente na tabela
 def inserir_cliente():
     cliente = Cliente(nome=str(input('Nome: ')),
                       email=str(input('E-Mail: '))
@@ -10,6 +10,7 @@ def inserir_cliente():
     print(cliente)
     cliente.save()
 
+# Consultar o Cliente
 def consultar_cliente():
     var_cliente = select(Cliente)
     var_cliente = db_session.execute(var_cliente).all()
@@ -18,6 +19,7 @@ def consultar_cliente():
         consultar_cliente()
         # run()
 
+# Atualiza o Cliente
 def atualizar_cliente():
     # Seleciona o item a ser alterado
     var_cliente = select(Cliente).where(str(input('Nome: ')) == Cliente.nome)
@@ -26,12 +28,21 @@ def atualizar_cliente():
     var_cliente.nome = str(input('Novo Nome: '))
     var_cliente.save()
 
+# Deleta o Cliente
 def deletar_cliente():
     cliente_deletar = input('Quem você deseja deletar? :')
     var_cliente = select(Cliente).where(cliente_deletar == Cliente.nome)
     var_cliente = db_session.execute(var_cliente).scalar()
     var_cliente.delete()
 
+def inserir_ordem():
+    ordem_servicos = Ordem_servicos(veiculo_associado=str(input('Veículo associado: ')),
+                      data_abertura=str(input('Data abertura: ')),
+                      descricao_servico=str(input('Descricao servico: ')),
+                      status=str(input('Status: ')),
+                      valor_estimado=int(input('Valor estimado: ')),)
+
+def atualizar_ordem():
 if __name__ == '__main__':
 
     while True:

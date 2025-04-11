@@ -17,6 +17,7 @@ Base.query = db_session.query_property()
 # relação entre as classes e as tabelas.
 
 
+# Ordens e serviços
 class Veiculo(Base):
     __tablename__ = 'Veiculos'
     id = Column(Integer, primary_key=True)
@@ -26,6 +27,8 @@ class Veiculo(Base):
     ano_fabricacao = Column(String(100), nullable=False, index=True)
     marca = Column(String(100), nullable=False, index=True)
 
+
+# Cliente
 class Cliente(Base):
     __tablename__ = 'clientes'
     id = Column(Integer, primary_key=True)
@@ -55,6 +58,8 @@ class Cliente(Base):
         }
         return dados_user
 
+
+# Atividade
 class Atividade(Base):
     __tablename__ = 'atividades'
     id = Column(Integer, primary_key=True)
@@ -62,7 +67,9 @@ class Atividade(Base):
     cliente_id = Column(Integer, ForeignKey('clientes.id'))
     clientes = relationship('Cliente')
 
-class Ordens_servicos(Base):
+
+# Ordens e Serviços
+class Ordem_servicos(Base):
     __tablename__ = 'ordens e servicos'
     id = Column(Integer, primary_key=True)
     veiculo_associado = Column(String(100), nullable=False, index=True)
