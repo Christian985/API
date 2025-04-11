@@ -117,6 +117,24 @@ class Ordem_servicos(Base):
                                                          self.descricao_servico,
                                                          self.status,
                                                          self.valor_estimado)
+    # Função para salvar
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+    # Função para deletar
+    def delete(self):
+        db_session.delete(self)
+        db_session.commit()
+
+    def serialize_user(self):
+        dados_user = {
+            'veiculo_associado': self.veiculo_associado,
+            'data_abertura': self.data_abertura,
+            'descricao_servico': self.descricao_servico,
+            'status': self.status,
+            'valor_estimado': self.valor_estimado,
+        }
 
 # Método para criar banco
 def init_db():
