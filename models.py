@@ -98,7 +98,6 @@ class Atividade(Base):
     nome = Column(String(80))
     endereco = Column(String(80))
     email = Column(String(80))
-
     veiculo_associado = Column(String(80))
     cliente_associado = Column(String(80))
     modelo = Column(String(80))
@@ -109,16 +108,19 @@ class Atividade(Base):
     data_abertura = Column(String(80))
     valor_estimado = Column(String(80))
 
+    # Id das Entidades
     cliente_id = Column(Integer, ForeignKey('clientes.id'))
     clientes = relationship('Cliente')
     veiculo_id = Column(Integer, ForeignKey('veiculos.id'))
     veiculos = relationship('Veiculo')
+    ordem_id = Column(Integer, ForeignKey('ordens.id'))
+    ordens = relationship('Ordem')
 
 
 
 # Ordens e Serviços
 class Ordem_servicos(Base):
-    __tablename__ = 'ordens e servicos'
+    __tablename__ = 'ordens'
     id = Column(Integer, primary_key=True)
     veiculo_associado = Column(String(100), nullable=False, index=True)
     data_abertura = Column(String(100), nullable=False, index=True)
