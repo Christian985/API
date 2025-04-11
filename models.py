@@ -96,10 +96,24 @@ class Atividade(Base):
     __tablename__ = 'atividades'
     id = Column(Integer, primary_key=True)
     nome = Column(String(80))
+    endereco = Column(String(80))
+    email = Column(String(80))
+
+    veiculo_associado = Column(String(80))
+    cliente_associado = Column(String(80))
+    modelo = Column(String(80))
+    placa = Column(String(80))
+    ano_fabricacao = Column(String(80))
+    marca = Column(String(80))
+    status = Column(String(80))
+    data_abertura = Column(String(80))
+    valor_estimado = Column(String(80))
+
     cliente_id = Column(Integer, ForeignKey('clientes.id'))
     clientes = relationship('Cliente')
     veiculo_id = Column(Integer, ForeignKey('veiculos.id'))
     veiculos = relationship('Veiculo')
+
 
 
 # Ordens e Serviços
