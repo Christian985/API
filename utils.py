@@ -50,6 +50,7 @@ def inserir_ordem():
                       status=str(input('Status: ')),
                       valor_estimado=int(input('Valor estimado: ')),)
 
+
 # Consulta Ordem na tabela
 def consultar_ordem():
     var_ordem = select(Ordem_servicos)
@@ -58,6 +59,7 @@ def consultar_ordem():
     if __name__ == '__main__':
         consultar_ordem()
         # run()
+
 
 # Atualiza Ordem na tabela
 def atualizar_ordem():
@@ -68,6 +70,7 @@ def atualizar_ordem():
     var_ordem.nome = str(input('Novo Nome: '))
     var_ordem.save()
 
+
 # Deleta Ordem na tabela
 def deletar_ordem():
     ordem_deletar = input('Quem você deseja deletar? :')
@@ -77,6 +80,11 @@ def deletar_ordem():
 
 
 # FIM DA ORDEM E SERVIÇOS
+
+
+# Insere Veículo
+
+
 if __name__ == '__main__':
 
     while True:
