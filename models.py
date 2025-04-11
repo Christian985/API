@@ -19,7 +19,7 @@ Base.query = db_session.query_property()
 
 # Ordens e serviços
 class Veiculo(Base):
-    __tablename__ = 'Veiculos'
+    __tablename__ = 'veiculos'
     id = Column(Integer, primary_key=True)
     cliente_associado = Column(String(100), nullable=False, index=True)
     modelo = Column(String(100), nullable=False, index=True)
@@ -55,6 +55,7 @@ class Cliente(Base):
             'id_user': self.id,
             'nome': self.nome,
             'email': self.email,
+            'endereco': self.endereco,
         }
         return dados_user
 
