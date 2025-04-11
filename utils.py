@@ -10,6 +10,7 @@ def inserir_cliente():
     print(cliente)
     cliente.save()
 
+
 # Consultar o Cliente
 def consultar_cliente():
     var_cliente = select(Cliente)
@@ -18,6 +19,7 @@ def consultar_cliente():
     if __name__ == '__main__':
         consultar_cliente()
         # run()
+
 
 # Atualiza o Cliente
 def atualizar_cliente():
@@ -28,6 +30,7 @@ def atualizar_cliente():
     var_cliente.nome = str(input('Novo Nome: '))
     var_cliente.save()
 
+
 # Deleta o Cliente
 def deletar_cliente():
     cliente_deletar = input('Quem você deseja deletar? :')
@@ -35,6 +38,11 @@ def deletar_cliente():
     var_cliente = db_session.execute(var_cliente).scalar()
     var_cliente.delete()
 
+
+# FIM DO CLIENTE
+
+
+# Insere Ordem na tabela
 def inserir_ordem():
     ordem_servicos = Ordem_servicos(veiculo_associado=str(input('Veículo associado: ')),
                       data_abertura=str(input('Data abertura: ')),
@@ -42,7 +50,31 @@ def inserir_ordem():
                       status=str(input('Status: ')),
                       valor_estimado=int(input('Valor estimado: ')),)
 
+
+def consultar_ordem():
+    var_ordem = select(Ordem_servicos)
+    var_ordem = db_session.execute(var_ordem).all()
+    print(var_ordem)
+    if __name__ == '__main__':
+        consultar_ordem()
+        # run()
+
+
 def atualizar_ordem():
+    # Seleciona o item a ser alterado
+    var_ordem = select(Ordem_servicos).where(str(input('Nome: ')) == Ordem_servicos.nome)
+    var_ordem = db_session.execute(var_ordem).scalar()
+    # Nova informação
+    var_ordem.nome = str(input('Novo Nome: '))
+    var_ordem.save()
+
+
+def deletar_ordem():
+    ordem_deletar = input('Quem você deseja deletar? :')
+    var_ordem = select(Ordem_servicos).where(ordem_deletar == Ordem_servicos.nome)
+    var_ordem = db_session.execute(var_ordem).scalar()
+    var_ordem.delete()
+
 if __name__ == '__main__':
 
     while True:
