@@ -29,7 +29,11 @@ class Veiculo(Base):
 
     # Representação classe
     def __repr__(self):
-        return '<Veiculo: {} {} {} {} {}>'.format(self.cliente_associado, self.modelo, self.placa, self.ano_fabricacao, self.marca)
+        return '<Veiculo: {} {} {} {} {}>'.format(self.cliente_associado,
+                                                  self.modelo,
+                                                  self.placa,
+                                                  self.ano_fabricacao,
+                                                  self.marca)
 
     # Função para salvar no banco
     def save(self):
@@ -61,7 +65,9 @@ class Cliente(Base):
 
     # Representação classe
     def __repr__(self):
-        return '<Cliente: {} {} {}>'.format(self.nome, self.email, self.endereco)
+        return '<Cliente: {} {} {}>'.format(self.nome,
+                                            self.email,
+                                            self.endereco)
 
     # Função para salvar no banco
     def save(self):
@@ -90,6 +96,8 @@ class Atividade(Base):
     nome = Column(String(80))
     cliente_id = Column(Integer, ForeignKey('clientes.id'))
     clientes = relationship('Cliente')
+    veiculo_id = Column(Integer, ForeignKey('veiculos.id'))
+    veiculos = relationship('Veiculo')
 
 
 # Ordens e Serviços
@@ -101,6 +109,14 @@ class Ordem_servicos(Base):
     descricao_servico = Column(String(100), nullable=False, index=True)
     status = Column(String(100), nullable=False, index=True)
     valor_estimado = Column(Integer, nullable=False, index=True)
+
+    # Representação classe
+    def __repr__(self):
+        return '<Ordem_servicos: {} {} {} {} {}>'.format(self.veiculo_associado,
+                                                         self.data_abertura,
+                                                         self.descricao_servico,
+                                                         self.status,
+                                                         self.valor_estimado)
 
 # Método para criar banco
 def init_db():
