@@ -40,10 +40,12 @@ class Veiculo(Base):
         db_session.add(self)
         db_session.commit()
 
+    # Função para deletar no banco
     def delete(self):
         db_session.delete(self)
         db_session.commit()
 
+    # Coloca os dados na tabela
     def serialize_user(self):
         dados_user ={
             'cliente_associado': self.cliente_associado,

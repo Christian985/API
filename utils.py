@@ -201,3 +201,6 @@ if __name__ == '__main__':
             elif escolha == '5':
                 os.system('cls')
                 break
+
+        elif escolha_menu == 4:
+            break
