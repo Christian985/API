@@ -160,3 +160,42 @@ if __name__ == '__main__':
             print('3 - Atualizar Veiculo')
             print('4 - Deletar Veiculo')
             print('5 - Sair')
+            escolha = input('Escolha: ')
+            if escolha == '1':
+                os.system('cls')
+                inserir_veiculo()
+            elif escolha == '2':
+                os.system('cls')
+                consultar_veiculo()
+            elif escolha == '3':
+                os.system('cls')
+                atualizar_veiculo()
+            elif escolha == '4':
+                os.system('cls')
+                deletar_veiculo()
+            elif escolha == '5':
+                os.system('cls')
+                break
+
+        elif escolha_menu == 3:
+            print('1 - Inserir Ordem')
+            print('2 - Consultar Ordem')
+            print('3 - Atualizar Ordem')
+            print('4 - Deletar Ordem')
+            print('5 - Sair')
+            escolha = input('Escolha: ')
+            if escolha == '1':
+                os.system('cls')
+                inserir_ordem()
+            elif escolha == '2':
+                os.system('cls')
+                consultar_ordem()
+            elif escolha == '3':
+                os.system('cls')
+                atualizar_ordem()
+            elif escolha == '4':
+                os.system('cls')
+                deletar_ordem()
+            elif escolha == '5':
+                os.system('cls')
+                break
