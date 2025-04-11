@@ -41,7 +41,14 @@ class Veiculo(Base):
         db_session.commit()
 
     def serialize_user(self):
-        dados_user =
+        dados_user ={
+            'cliente_associado': self.cliente_associado,
+            'modelo': self.modelo,
+            'placa': self.placa,
+            'ano_fabricacao': self.ano_fabricacao,
+            'marca': self.marca,
+        }
+        return dados_user
 
 
 # Cliente
