@@ -135,7 +135,9 @@ if __name__ == '__main__':
         print('2 - Veículo')
         print('3 - Ordens e servicos')
         print('4 - Sair')
+
         escolha_menu = int(input('Escolha uma opção: '))
+
         if escolha_menu == 1:
             print('1 - Inserir Cliente')
             print('2 - Consultar Cliente')
