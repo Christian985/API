@@ -135,6 +135,7 @@ class Ordem_servicos(Base):
             'status': self.status,
             'valor_estimado': self.valor_estimado,
         }
+        return dados_user
 
 # Método para criar banco
 def init_db():
