@@ -31,6 +31,18 @@ class Veiculo(Base):
     def __repr__(self):
         return '<Veiculo: {} {} {} {} {}>'.format(self.cliente_associado, self.modelo, self.placa, self.ano_fabricacao, self.marca)
 
+    # Função para salvar no banco
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+    def delete(self):
+        db_session.delete(self)
+        db_session.commit()
+
+    def serialize_user(self):
+        dados_user =
+
 
 # Cliente
 class Cliente(Base):
