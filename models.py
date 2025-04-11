@@ -21,7 +21,7 @@ Base.query = db_session.query_property()
 class Veiculo(Base):
     __tablename__ = 'Veiculos'
     id = Column(Integer, primary_key=True)
-    nome = Column(String(100), nullable=False, index=True)
+    cliente_associado = Column(String(100), nullable=False, index=True)
     modelo = Column(String(100), nullable=False, index=True)
     placa = Column(String(100), nullable=False, index=True)
     ano_fabricacao = Column(String(100), nullable=False, index=True)

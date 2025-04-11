@@ -1,6 +1,6 @@
 from models import Cliente, Veiculo, db_session, Ordem_servicos
 from sqlalchemy import select
-
+import os
 
 # Inserir dados do Cliente na tabela
 def inserir_cliente():
@@ -64,7 +64,7 @@ def consultar_ordem():
 # Atualiza Ordem na tabela
 def atualizar_ordem():
     # Seleciona o item a ser alterado
-    var_ordem = select(Ordem_servicos).where(str(input('Nome: ')) == Ordem_servicos.nome)
+    var_ordem = select(Ordem_servicos).where(str(input('Veículo associado: ')) == Ordem_servicos.veiculo_associado)
     var_ordem = db_session.execute(var_ordem).scalar()
     # Nova informação
     var_ordem.nome = str(input('Novo Nome: '))
@@ -74,7 +74,7 @@ def atualizar_ordem():
 # Deleta Ordem na tabela
 def deletar_ordem():
     ordem_deletar = input('Quem você deseja deletar? :')
-    var_ordem = select(Ordem_servicos).where(ordem_deletar == Ordem_servicos.nome)
+    var_ordem = select(Ordem_servicos).where(ordem_deletar == Ordem_servicos.veiculo_associado)
     var_ordem = db_session.execute(var_ordem).scalar()
     var_ordem.delete()
 
@@ -82,7 +82,27 @@ def deletar_ordem():
 # FIM DA ORDEM E SERVIÇOS
 
 
-# Insere Veículo
+# Insere o Veículo na tabela
+def inserir_veiculo():
+    veiculo = Veiculo(cliente_associado=str(input('Cliente associado: ')),
+                      modelo=str(input('Modelo: ')),
+                      placa=str(input('Placa: ')),
+                      ano_fabricacao=str(input('Ano fabricacao: ')),
+                      marca=str(input('Marca: ')),)
+
+# Consulta o Veículo na tabela
+def consultar_veiculo():
+    var_veiculo = select(Veiculo)
+    var_veiculo = db_session.execute(var_veiculo).all()
+    print(var_veiculo)
+    if __name__ == '__main__':
+        consultar_veiculo()
+        # run
+
+
+def atualizar_veiculo():
+    # Seleciona o item a ser alterado
+    var_veiculo = select(Veiculo).where(str(input(('Nome: ')) == Veiculo.cliente_associado))
 
 
 if __name__ == '__main__':
