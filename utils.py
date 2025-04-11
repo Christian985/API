@@ -1,6 +1,5 @@
 from models import Cliente, Veiculo, db_session, Ordem_servicos
 from sqlalchemy import select
-import os
 
 # Inserir dados do Cliente na tabela
 def inserir_cliente():
@@ -164,19 +163,14 @@ if __name__ == '__main__':
             print('5 - Sair')
             escolha = input('Escolha: ')
             if escolha == '1':
-                os.system('cls')
                 inserir_veiculo()
             elif escolha == '2':
-                os.system('cls')
                 consultar_veiculo()
             elif escolha == '3':
-                os.system('cls')
                 atualizar_veiculo()
             elif escolha == '4':
-                os.system('cls')
                 deletar_veiculo()
             elif escolha == '5':
-                os.system('cls')
                 break
 
         elif escolha_menu == 3:
@@ -187,19 +181,14 @@ if __name__ == '__main__':
             print('5 - Sair')
             escolha = input('Escolha: ')
             if escolha == '1':
-                os.system('cls')
                 inserir_ordem()
             elif escolha == '2':
-                os.system('cls')
                 consultar_ordem()
             elif escolha == '3':
-                os.system('cls')
                 atualizar_ordem()
             elif escolha == '4':
-                os.system('cls')
                 deletar_ordem()
             elif escolha == '5':
-                os.system('cls')
                 break
 
         elif escolha_menu == 4:
