@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf318518-ba9c-4ef8-9e36-53d097a671f4" name="Changes" comment="commit" />
+    <list default="true" id="cf318518-ba9c-4ef8-9e36-53d097a671f4" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validade.py" beforeDir="false" afterPath="$PROJECT_DIR$/validade.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +109,7 @@
       <workItem from="1743614436859" duration="3953000" />
       <workItem from="1743762695061" duration="2652000" />
       <workItem from="1744369124373" duration="2900000" />
-      <workItem from="1744372500530" duration="10245000" />
+      <workItem from="1744372500530" duration="10716000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -339,7 +343,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744394506859</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="commit">
+      <option name="closed" value="true" />
+      <created>1744394886749</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1744394886749</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

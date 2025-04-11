@@ -24,7 +24,7 @@ def consultar_cliente():
 
 # Atualiza o Cliente
 def atualizar_cliente():
-    # Seleciona o item a ser alterado
+    # Seleciona o item a ser alterado000000000000
     var_cliente = select(Cliente).where(str(input('Nome: ')) == Cliente.nome)
     var_cliente = db_session.execute(var_cliente).scalar()
     # Nova informação

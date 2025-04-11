@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 # [Flask routes] para listar rotas da API
 
 # Criar variável para receber a classe Flask
-app = Flask(__name__)
+app = Flask(__name__)0
 
 # Documentação OpenAPI
 spec = FlaskPydanticSpec('flask',
