@@ -92,7 +92,7 @@ def atualizar_veiculo():
     var_veiculo.cliente_associado = str(input('Novo Nome: '))
     var_veiculo.modelo = str(input('Novo Modelo: '))
     var_veiculo.placa = str(input('Nova Placa: '))
-    var_veiculo.ano_fabricacao = str(input('Novo ano'))
+    var_veiculo.ano_fabricacao = str(input('Novo ano: '))
     var_veiculo.marca = str(input('Nova marca: '))
     var_veiculo.save()
 
