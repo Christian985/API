@@ -121,7 +121,6 @@ class Atividade(Base):
     ordens = relationship('Ordem')
 
 
-
 # Ordens e Serviços
 class Ordem(Base):
     __tablename__ = 'ordens'
@@ -158,6 +157,7 @@ class Ordem(Base):
             'valor_estimado': self.valor_estimado,
         }
         return dados_user
+
 
 # Método para criar banco
 def init_db():
