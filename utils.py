@@ -55,11 +55,9 @@ def inserir_ordem():
 # Consulta Ordem na tabela
 def consultar_ordem():
     var_ordem = select(Ordem)
-    var_ordem = db_session.execute(var_ordem).all()
-    print(var_ordem)
-    if __name__ == '__main__':
-        consultar_ordem()
-        # run()
+    var_ordem = db_session.execute(var_ordem).scalars()
+    for ordem in var_ordem:
+        print(ordem.veiculo_associado, ordem.data_abertura, ordem.descricao_servico, ordem.status, ordem.valor_estimado)
 
 
 # Atualiza Ordem na tabela
