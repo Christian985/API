@@ -27,7 +27,7 @@ def atualizar_cliente():
     var_cliente = select(Cliente).where(str(input('Nome: ')) == Cliente.nome)
     var_cliente = db_session.execute(var_cliente).scalar()
     # Altera o cpf do cliente
-    var_cliente = select(Cliente).where(str(input('Cpf: ')) == Cliente.cpf)
+    var_cliente = select(Cliente).where(int(input('Cpf: ')) == Cliente.cpf)
     var_cliente = db_session.execute(var_cliente).scalar()
     # Nova informação de nome
     var_cliente.nome = str(input('Novo Nome: '))
@@ -68,11 +68,32 @@ def consultar_veiculo():
 
 # Atualiza o Veículo na tabela
 def atualizar_veiculo():
-    # Seleciona o item a ser alterado
+    # Seleciona o cliente do veículo a ser alterado
     var_veiculo = select(Veiculo).where(str(input('Cliente associado: ')) == Veiculo.cliente_associado)
     var_veiculo = db_session.execute(var_veiculo).scalar()
-    # Nova informação
+
+    # Seleciona o modelo do veículo
+    var_veiculo = select(Veiculo).where(str(input('Modelo do veiculo: ')) == Veiculo.modelo)
+    var_veiculo = db_session.execute(var_veiculo).scalar()
+
+    # Seleciona a placa do veículo
+    var_veiculo = select(Veiculo).where(str(input('Placa do veiculo: ')) == Veiculo.placa)
+    var_veiculo = db_session.execute(var_veiculo).scalar()
+
+    # Seleciona o ano de fabricação do veículo
+    var_veiculo = select(Veiculo).where(str(input('Ano de fabricação: ')) == Veiculo.ano_fabricacao)
+    var_veiculo = db_session.execute(var_veiculo).scalar()
+
+    # Seleciona a marca do veículo
+    var_veiculo = select(Veiculo).where(str(input('Marca: ')) == Veiculo.marca)
+    var_veiculo = db_session.execute(var_veiculo).scalar()
+
+    # Nova informação de modelo do veículo
     var_veiculo.cliente_associado = str(input('Novo Nome: '))
+    var_veiculo.modelo = str(input('Novo Modelo: '))
+    var_veiculo.placa = str(input('Nova Placa: '))
+    var_veiculo.ano_fabricacao = str(input('Novo ano'))
+    var_veiculo.marca = str(input('Nova marca: '))
     var_veiculo.save()
 
 
