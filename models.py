@@ -1,24 +1,25 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base, relationship
 
-# Configuração com a conexão com o banco de dados
+# Configuração com a conexão com o Banco de Dados
 engine = create_engine('sqlite:///atividades.sqlite3')
 
-# Gerencia as sessões com o banco de dados
+# Gerencia as sessões com o Banco de Dados
 db_session = scoped_session(sessionmaker(bind=engine))
 
+
+# Base_declarativa - Ela permite que você defina Classes Python que representam tabelas de
+# Banco de Dados de forma declarativa, sem a necessidade de configurar manualmente a
+# relação entre as Classes e as Tabelas.
 Base = declarative_base()
 Base.query = db_session.query_property()
 
 
 
-# Base_declarativa - Ela permite que você defina classes Python que representam tabelas de
-# banco de dados de forma declarativa, sem a necessidade de configurar manualmente a
-# relação entre as classes e as tabelas.
 
-
-# Ordens e serviços
+# Veículos
 class Veiculo(Base):
+    # Tabela de Veículos
     __tablename__ = 'veiculos'
     id = Column(Integer, primary_key=True)
     cliente_associado = Column(String(100), nullable=False, index=True)
@@ -27,7 +28,7 @@ class Veiculo(Base):
     ano_fabricacao = Column(Integer, nullable=False, index=True)
     marca = Column(String(100), nullable=False, index=True)
 
-    # Representação classe
+    # Representação de Classe
     def __repr__(self):
         return '<Veiculo: {} {} {} {} {}>'.format(self.cliente_associado,
                                                   self.modelo,
@@ -35,17 +36,17 @@ class Veiculo(Base):
                                                   self.ano_fabricacao,
                                                   self.marca)
 
-    # Função para salvar no banco
+    # Função para Salvar no Banco
     def save(self):
         db_session.add(self)
         db_session.commit()
 
-    # Função para deletar no banco
+    # Função para Deletar no Banco
     def delete(self):
         db_session.delete(self)
         db_session.commit()
 
-    # Coloca os dados na tabela
+    # Coloca os Dados na Tabela
     def serialize_user(self):
         dados_user ={
             'cliente_associado': self.cliente_associado,
@@ -59,6 +60,7 @@ class Veiculo(Base):
 
 # Cliente
 class Cliente(Base):
+    # Tabela de Clientes
     __tablename__ = 'clientes'
     id = Column(Integer, primary_key=True)
     nome = Column(String(100), nullable=False, index=True)
@@ -66,23 +68,24 @@ class Cliente(Base):
     telefone = Column(Integer, nullable=False, index=True)
     endereco = Column(String(100), nullable=False, index=True)
 
-    # Representação classe
+    # Representação Classe
     def __repr__(self):
         return '<Cliente: {} {} {} {}>'.format(self.nome,
                                             self.cpf,
                                             self.telefone,
                                             self.endereco)
 
-    # Função para salvar no banco
+    # Função para Salvar no Banco
     def save(self):
         db_session.add(self)
         db_session.commit()
 
-    # Função para deletar
+    # Função para Deletar
     def delete(self):
         db_session.delete(self)
         db_session.commit()
 
+    # Função para Serializar
     def serialize_user(self):
         dados_user = {
             'id_user': self.id,
@@ -96,6 +99,7 @@ class Cliente(Base):
 
 # Atividade
 class Atividade(Base):
+    # Tabela de Atividades
     __tablename__ = 'atividades'
     id = Column(Integer, primary_key=True)
     nome = Column(String(80))
@@ -123,6 +127,7 @@ class Atividade(Base):
 
 # Ordens e Serviços
 class Ordem(Base):
+    # Tabela de Ordens e Serviços
     __tablename__ = 'ordens'
     id = Column(Integer, primary_key=True)
     veiculo_associado = Column(String(100), nullable=False, index=True)
@@ -131,23 +136,24 @@ class Ordem(Base):
     status = Column(String(100), nullable=False, index=True)
     valor_estimado = Column(Integer, nullable=False, index=True)
 
-    # Representação classe
+    # Representação de Classe
     def __repr__(self):
         return '<Ordem: {} {} {} {} {}>'.format(self.veiculo_associado,
                                                          self.data_abertura,
                                                          self.descricao_servico,
                                                          self.status,
                                                          self.valor_estimado)
-    # Função para salvar
+    # Função para Salvar
     def save(self):
         db_session.add(self)
         db_session.commit()
 
-    # Função para deletar
+    # Função para Deletar
     def delete(self):
         db_session.delete(self)
         db_session.commit()
 
+    # Função para Serializar
     def serialize_user(self):
         dados_user = {
             'veiculo_associado': self.veiculo_associado,
