@@ -17,6 +17,8 @@ def atividades():
     print(resultado_atividades)
     return jsonify(resultado_atividades)
 
+
+
 @app.route('/nova_categoria', methods=['GET'])
 def criar_categoria():
     if request.method == 'GET':
@@ -31,6 +33,7 @@ def criar_categoria():
             return redirect(url_for('categoria'))
 
     return jsonify({'Erro'})
+
 
 
 @app.route('/clientes', methods=['POST'])
