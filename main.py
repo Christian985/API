@@ -11,8 +11,6 @@ spec = FlaskPydanticSpec('flask',
 spec.register(app)
 
 
-def validar_cliente(cliente):
-
 
 
 @app.route('/clientes', methods=['GET'])
