@@ -40,6 +40,44 @@ def deletar_cliente():
 # FIM DO CLIENTE
 
 
+# Insere o Veículo na tabela
+def inserir_veiculo():
+    veiculo = Veiculo(cliente_associado=str(input('Cliente associado: ')),
+                      modelo=str(input('Modelo: ')),
+                      placa=str(input('Placa: ')),
+                      ano_fabricacao=str(input('Ano fabricacao: ')),
+                      marca=str(input('Marca: ')),)
+    print(veiculo)
+    veiculo.save()
+
+
+# Consulta o Veículo na tabela
+def consultar_veiculo():
+    var_veiculo = select(Veiculo)
+    var_veiculo = db_session.execute(var_veiculo).scalars()
+    for veiculo in var_veiculo:
+        print(veiculo.cliente_associado, veiculo.modelo, veiculo.placa, veiculo.ano_fabricacao, veiculo.marca)
+
+# Atualiza o Veículo na tabela
+def atualizar_veiculo():
+    # Seleciona o item a ser alterado
+    var_veiculo = select(Veiculo).where(str(input('Cliente associado: ')) == Veiculo.cliente_associado)
+    var_veiculo = db_session.execute(var_veiculo).scalar()
+    # Nova informação
+    var_veiculo.cliente_associado = str(input('Novo Nome: '))
+    var_veiculo.save()
+
+
+# Deleta o Veículo na tabela
+def deletar_veiculo():
+    veiculo_deletar = input('Quem você deseja deletar? :')
+    var_veiculo = select(Veiculo).where(veiculo_deletar == Veiculo.cliente_associado)
+    var_veiculo = db_session.execute(var_veiculo).scalar()
+    var_veiculo.delete()
+
+# FIM DO VEÍCULO
+
+
 # Insere Ordem na tabela
 def inserir_ordem():
     ordem_servicos = Ordem(veiculo_associado=str(input('Veículo associado: ')),
@@ -79,47 +117,6 @@ def deletar_ordem():
 
 
 # FIM DA ORDEM E SERVIÇOS
-
-
-# Insere o Veículo na tabela
-def inserir_veiculo():
-    veiculo = Veiculo(cliente_associado=str(input('Cliente associado: ')),
-                      modelo=str(input('Modelo: ')),
-                      placa=str(input('Placa: ')),
-                      ano_fabricacao=str(input('Ano fabricacao: ')),
-                      marca=str(input('Marca: ')),)
-    print(veiculo)
-    veiculo.save()
-
-
-# Consulta o Veículo na tabela
-def consultar_veiculo():
-    var_veiculo = select(Veiculo)
-    var_veiculo = db_session.execute(var_veiculo).all()
-    print(var_veiculo)
-    if __name__ == '__main__':
-        consultar_veiculo()
-        # run
-
-
-# Atualiza o Veículo na tabela
-def atualizar_veiculo():
-    # Seleciona o item a ser alterado
-    var_veiculo = select(Veiculo).where(str(input('Cliente associado: ')) == Veiculo.cliente_associado)
-    var_veiculo = db_session.execute(var_veiculo).scalar()
-    # Nova informação
-    var_veiculo.cliente_associado = str(input('Novo Nome: '))
-    var_veiculo.save()
-
-
-# Deleta o Veículo na tabela
-def deletar_veiculo():
-    veiculo_deletar = input('Quem você deseja deletar? :')
-    var_veiculo = select(Veiculo).where(veiculo_deletar == Veiculo.cliente_associado)
-    var_veiculo = db_session.execute(var_veiculo).scalar()
-    var_veiculo.delete()
-
-# FIM DO VEÍCULO
 
 
 if __name__ == '__main__':
