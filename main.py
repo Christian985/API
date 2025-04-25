@@ -18,6 +18,7 @@ def atividades():
     return jsonify(resultado_atividades)
 
 
+
 @app.route('/clientes', methods=['POST'])
 def clientes():
     sql_clientes = select(Cliente)
@@ -42,7 +43,6 @@ def veiculos():
 
 
 
-
 @app.route('/ordem', methods=['POST'])
 def ordens_servicos():
     sql_ordens = select(Ordem)
@@ -52,7 +52,6 @@ def ordens_servicos():
         lista_ordens.append(ordem.serialize_cliente())
         print(lista_ordens[-1])
     return jsonify(lista_de_ordens=lista_ordens)
-
 
 
 
