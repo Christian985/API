@@ -43,7 +43,7 @@ def atualizar_cliente():
     var_cliente.nome = str(input('Novo Nome: '))
     var_cliente.cpf = str(input('Novo CPF: '))
     var_cliente.telefone = int(input('Novo Telefone: '))
-    var_cliente.endereco = str(input('Novo endereço: '))
+    var_cliente.endereco = str(input('Novo Endereço: '))
     var_cliente.save()
 
 
@@ -51,9 +51,9 @@ def atualizar_cliente():
 def deletar_cliente():
     # Sessões para deletar
     cliente_deletar = input('Quem você deseja deletar? :')
-    cliente_deletar_cpf = int(input('Digite o CPF: '))
-    cliente_deletar_tel = int(input('Digite o Telefone: '))
-    cliente_deletar_end = input('Digite o endereço: ')
+    cliente_deletar_cpf = int(input('Deletar o CPF: '))
+    cliente_deletar_tel = int(input('Deletar o Telefone: '))
+    cliente_deletar_end = input('Deletar o Endereço: ')
 
     # Irá pegar os dados
     var_cliente = select(Cliente).where(cliente_deletar == Cliente.nome)
@@ -69,10 +69,10 @@ def deletar_cliente():
 
 # Insere o Veículo na tabela
 def inserir_veiculo():
-    veiculo = Veiculo(cliente_associado=str(input('Cliente associado: ')),
+    veiculo = Veiculo(cliente_associado=str(input('Cliente Associado: ')),
                       modelo=str(input('Modelo: ')),
                       placa=str(input('Placa: ')),
-                      ano_fabricacao=int(input('Ano fabricacao: ')),
+                      ano_fabricacao=int(input('Ano de Fabricação: ')),
                       marca=str(input('Marca: ')),)
     print(veiculo)
     veiculo.save()
@@ -112,8 +112,8 @@ def atualizar_veiculo():
     var_veiculo.cliente_associado = str(input('Novo Nome: '))
     var_veiculo.modelo = str(input('Novo Modelo: '))
     var_veiculo.placa = str(input('Nova Placa: '))
-    var_veiculo.ano_fabricacao = str(input('Novo ano: '))
-    var_veiculo.marca = str(input('Nova marca: '))
+    var_veiculo.ano_fabricacao = str(input('Novo Ano de Fabricação: '))
+    var_veiculo.marca = str(input('Nova Marca: '))
     var_veiculo.save()
 
 
@@ -121,10 +121,10 @@ def atualizar_veiculo():
 def deletar_veiculo():
     # Sessões para deletar
     veiculo_deletar = input('Quem você deseja deletar? :')
-    veiculo_deletar_mod = input('Digite o modelo do veiculo: ')
-    veiculo_deletar_placa = input('Digite a placa do veiculo: ')
-    veiculo_deletar_ano = input('Digite o ano do veiculo: ')
-    veiculo_deletar_marca = input('Digite a marca: ')
+    veiculo_deletar_mod = input('Deletar o Modelo do Veículo: ')
+    veiculo_deletar_placa = input('Deletar a Placa do Veículo: ')
+    veiculo_deletar_ano = input('Deletar o Ano do Veículo: ')
+    veiculo_deletar_marca = input('Deletar a Marca: ')
 
     # Irá pegar os dados
     var_veiculo = select(Veiculo).where(veiculo_deletar == Veiculo.cliente_associado)
@@ -136,7 +136,6 @@ def deletar_veiculo():
     var_veiculo.delete()
 
 # FIM DO VEÍCULO
-
 
 # Insere Ordem na tabela
 def inserir_ordem():
@@ -191,8 +190,19 @@ def atualizar_ordem():
 
 # Deleta Ordem na tabela
 def deletar_ordem():
-    ordem_deletar = input('Quem você deseja deletar? :')
+    # Sessões para deletar
+    ordem_deletar = input('Quem você deseja deletar? : ')
+    ordem_deletar_data = int(input('Deletar Data de Abertura: '))
+    ordem_deletar_desc = input('Deletar Descrição do Serviço: ')
+    ordem_deletar_status = input('Deletar Status: ')
+    ordem_deletar_valor = int(input('Deletar Valor Estimado: '))
+
+    # Irá pegar os dados
     var_ordem = select(Ordem).where(ordem_deletar == Ordem.veiculo_associado)
+    var_ordem = select(Ordem).where(ordem_deletar_data == Ordem.data_abertura)
+    var_ordem = select(Ordem).where(ordem_deletar_desc == Ordem.descricao_servico)
+    var_ordem = select(Ordem).where(ordem_deletar_status == Ordem.status)
+    var_ordem = select(Ordem).where(ordem_deletar_valor == Ordem.valor_estimado)
     var_ordem = db_session.execute(var_ordem).scalar()
     var_ordem.delete()
 
