@@ -51,8 +51,8 @@ def atualizar_cliente():
 def deletar_cliente():
     # Sessões para deletar
     cliente_deletar = input('Quem você deseja deletar? :')
-    cliente_deletar_cpf = input('Digite o CPF: ')
-    cliente_deletar_tel = input('Digite o Telefone: ')
+    cliente_deletar_cpf = int(input('Digite o CPF: '))
+    cliente_deletar_tel = int(input('Digite o Telefone: '))
     cliente_deletar_end = input('Digite o endereço: ')
 
     # Irá pegar os dados
@@ -84,6 +84,7 @@ def consultar_veiculo():
     var_veiculo = db_session.execute(var_veiculo).scalars()
     for veiculo in var_veiculo:
         print(veiculo.cliente_associado, veiculo.modelo, veiculo.placa, veiculo.ano_fabricacao, veiculo.marca)
+
 
 # Atualiza o Veículo na tabela
 def atualizar_veiculo():
@@ -118,8 +119,19 @@ def atualizar_veiculo():
 
 # Deleta o Veículo na tabela
 def deletar_veiculo():
+    # Sessões para deletar
     veiculo_deletar = input('Quem você deseja deletar? :')
+    veiculo_deletar_mod = input('Digite o modelo do veiculo: ')
+    veiculo_deletar_placa = input('Digite a placa do veiculo: ')
+    veiculo_deletar_ano = input('Digite o ano do veiculo: ')
+    veiculo_deletar_marca = input('Digite a marca: ')
+
+    # Irá pegar os dados
     var_veiculo = select(Veiculo).where(veiculo_deletar == Veiculo.cliente_associado)
+    var_veiculo = select(Veiculo).where(veiculo_deletar_mod == Veiculo.modelo)
+    var_veiculo = select(Veiculo).where(veiculo_deletar_placa == Veiculo.placa)
+    var_veiculo = select(Veiculo).where(veiculo_deletar_ano == Veiculo.ano_fabricacao)
+    var_veiculo = select(Veiculo).where(veiculo_deletar_marca == Veiculo.modelo)
     var_veiculo = db_session.execute(var_veiculo).scalar()
     var_veiculo.delete()
 
