@@ -24,7 +24,7 @@ class Veiculo(Base):
     cliente_associado = Column(String(100), nullable=False, index=True)
     modelo = Column(String(100), nullable=False, index=True)
     placa = Column(String(100), nullable=False, index=True)
-    ano_fabricacao = Column(String(100), nullable=False, index=True)
+    ano_fabricacao = Column(Integer, nullable=False, index=True)
     marca = Column(String(100), nullable=False, index=True)
 
     # Representação classe
@@ -62,13 +62,15 @@ class Cliente(Base):
     __tablename__ = 'clientes'
     id = Column(Integer, primary_key=True)
     nome = Column(String(100), nullable=False, index=True)
-    email = Column(String(100), nullable=False, index=True)
+    cpf = Column(Integer, nullable=False, index=True)
+    telefone = Column(Integer, nullable=False, index=True)
     endereco = Column(String(100), nullable=False, index=True)
 
     # Representação classe
     def __repr__(self):
-        return '<Cliente: {} {} {}>'.format(self.nome,
-                                            self.email,
+        return '<Cliente: {} {} {} {}>'.format(self.nome,
+                                            self.cpf,
+                                            self.telefone,
                                             self.endereco)
 
     # Função para salvar no banco
@@ -85,7 +87,8 @@ class Cliente(Base):
         dados_user = {
             'id_user': self.id,
             'nome': self.nome,
-            'email': self.email,
+            'cpf': self.cpf,
+            'telefone': self.telefone,
             'endereco': self.endereco,
         }
         return dados_user
@@ -96,8 +99,9 @@ class Atividade(Base):
     __tablename__ = 'atividades'
     id = Column(Integer, primary_key=True)
     nome = Column(String(80))
+    cpf = Column(Integer)
     endereco = Column(String(80))
-    email = Column(String(80))
+    telefone = Column(Integer)
     veiculo_associado = Column(String(80))
     cliente_associado = Column(String(80))
     modelo = Column(String(80))

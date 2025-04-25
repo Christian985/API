@@ -4,7 +4,8 @@ from sqlalchemy import select
 # Inserir dados do Cliente na tabela
 def inserir_cliente():
     cliente = Cliente(nome=str(input('Nome: ')),
-                      email=str(input('E-Mail: ')),
+                      cpf=int(input('CPF: ')),
+                      telefone=int(input('Telefone: ')),
                       endereco=str(input('Endereço: ')),
                       )
     print(cliente)
@@ -16,16 +17,21 @@ def consultar_cliente():
     var_cliente = select(Cliente)
     var_cliente = db_session.execute(var_cliente).scalars()
     for cliente in var_cliente:
-        print(cliente.nome, cliente.email, cliente.endereco)
+        print(cliente.nome, cliente.cpf, cliente.telefone, cliente.endereco)
 
 
 # Atualiza o Cliente
 def atualizar_cliente():
     # Seleciona o item a ser alterado
+    # Altera o nome do cliente
     var_cliente = select(Cliente).where(str(input('Nome: ')) == Cliente.nome)
     var_cliente = db_session.execute(var_cliente).scalar()
-    # Nova informação
+    # Altera o cpf do cliente
+    var_cliente = select(Cliente).where(str(input('Cpf: ')) == Cliente.cpf)
+    var_cliente = db_session.execute(var_cliente).scalar()
+    # Nova informação de nome
     var_cliente.nome = str(input('Novo Nome: '))
+    var_cliente.cpf = str(input('Novo CPF: '))
     var_cliente.save()
 
 
@@ -45,7 +51,7 @@ def inserir_veiculo():
     veiculo = Veiculo(cliente_associado=str(input('Cliente associado: ')),
                       modelo=str(input('Modelo: ')),
                       placa=str(input('Placa: ')),
-                      ano_fabricacao=str(input('Ano fabricacao: ')),
+                      ano_fabricacao=int(input('Ano fabricacao: ')),
                       marca=str(input('Marca: ')),)
     print(veiculo)
     veiculo.save()

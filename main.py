@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from models import Veiculo, Cliente, Ordem_servicos
+from models import Veiculo, Cliente, Ordem
 from flask import Flask, render_template, request, redirect, url_for, request, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
 
@@ -14,19 +14,19 @@ spec.register(app)
 
 @app.route('/clientes', methods=['GET'])
 def clientes():
-    return 'clientes'
+    return Cliente
 
 
 
 @app.route('/veiculos', methods=['GET'])
 def veiculos():
-    return 'veiculos'
+    return Veiculo
 
 
 
 @app.route('/ordem', methods=['GET'])
 def ordens_servicos():
-    return 'ordem'
+    return Ordem
 
 
 
