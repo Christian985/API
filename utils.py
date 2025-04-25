@@ -160,11 +160,32 @@ def consultar_ordem():
 
 # Atualiza Ordem na tabela
 def atualizar_ordem():
-    # Seleciona o item a ser alterado
+    # Seleciona o veículo associado a ser alterado
     var_ordem = select(Ordem).where(str(input('Veículo associado: ')) == Ordem.veiculo_associado)
     var_ordem = db_session.execute(var_ordem).scalar()
+
+    # Seleciona a data de abertura a ser alterada
+    var_ordem = select(Ordem).where(int(input('Data de abertura: ')) == Ordem.data_abertura)
+    var_ordem = db_session.execute(var_ordem).scalar()
+
+    # Seleciona a descrição do serviço a ser alterada
+    var_ordem = select(Ordem).where(str(input('Descrição do serviço: ')) == Ordem.descricao_servico)
+    var_ordem = db_session.execute(var_ordem).scalar()
+
+    # Seleciona o status a ser alterado
+    var_ordem = select(Ordem).where(str(input('Status: ')) == Ordem.status)
+    var_ordem = db_session.execute(var_ordem).scalar()
+
+    # Seleciona o valor estimado a ser alterado
+    var_ordem = select(Ordem).where(int(input('Valor estimado: ')) == Ordem.valor_estimado)
+    var_ordem = db_session.execute(var_ordem).scalar()
+
     # Nova informação
     var_ordem.veiculo_associado = str(input('Novo Veículo associado: '))
+    var_ordem.data_abertura = int(input('Nova Data abertura: '))
+    var_ordem.descricao_servico = str(input('Nova Descrição serviço: '))
+    var_ordem.status = str(input('Novo Status: '))
+    var_ordem.valor_estimado = int(input('Novo Valor estimado: '))
     var_ordem.save()
 
 
@@ -182,6 +203,7 @@ def deletar_ordem():
 if __name__ == '__main__':
 
     while True:
+        print()
         print('Menu')
         print('1 - Cliente')
         print('2 - Veículo')
