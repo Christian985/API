@@ -131,7 +131,7 @@ def deletar_veiculo():
     var_veiculo = select(Veiculo).where(veiculo_deletar_mod == Veiculo.modelo)
     var_veiculo = select(Veiculo).where(veiculo_deletar_placa == Veiculo.placa)
     var_veiculo = select(Veiculo).where(veiculo_deletar_ano == Veiculo.ano_fabricacao)
-    var_veiculo = select(Veiculo).where(veiculo_deletar_marca == Veiculo.modelo)
+    var_veiculo = select(Veiculo).where(veiculo_deletar_marca == Veiculo.marca)
     var_veiculo = db_session.execute(var_veiculo).scalar()
     var_veiculo.delete()
 
