@@ -38,7 +38,9 @@ def atualizar_cliente():
 # Deleta o Cliente
 def deletar_cliente():
     cliente_deletar = input('Quem você deseja deletar? :')
+    cliente_deletar_cpf = input('Digite o CPF: ')
     var_cliente = select(Cliente).where(cliente_deletar == Cliente.nome)
+    var_cliente = select(Cliente).where(cliente_deletar_cpf == Cliente.cpf)
     var_cliente = db_session.execute(var_cliente).scalar()
     var_cliente.delete()
 
