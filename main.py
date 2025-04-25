@@ -17,6 +17,20 @@ def atividades():
     print(resultado_atividades)
     return jsonify(resultado_atividades)
 
+@app.route('/nova_categoria', methods=['GET'])
+def criar_categoria():
+    if request.method == 'GET':
+        if not request.form['form_categoria']:
+            return jsonify({'Erro'})
+        else:
+            form_evento = Categoria(nome_categoria=request.form['form_categoria'])
+            print(form_evento)
+            form_evento.save()
+            db_session.close()
+            jsonify({'Categoria criada', 'Sucesso'})
+            return redirect(url_for('categoria'))
+
+    return jsonify({'Erro'})
 
 
 @app.route('/clientes', methods=['POST'])
