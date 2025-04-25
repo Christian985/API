@@ -14,16 +14,14 @@ def inserir_cliente():
 # Consultar o Cliente
 def consultar_cliente():
     var_cliente = select(Cliente)
-    var_cliente = db_session.execute(var_cliente).all()
-    print(var_cliente)
-    if __name__ == '__main__':
-        consultar_cliente()
-        # run()
+    var_cliente = db_session.execute(var_cliente).scalars()
+    for cliente in var_cliente:
+        print(cliente.nome, cliente.email, cliente.endereco)
 
 
 # Atualiza o Cliente
 def atualizar_cliente():
-    # Seleciona o item a ser alterado000000000000
+    # Seleciona o item a ser alterado
     var_cliente = select(Cliente).where(str(input('Nome: ')) == Cliente.nome)
     var_cliente = db_session.execute(var_cliente).scalar()
     # Nova informação
