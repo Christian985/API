@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from models import Veiculo, Cliente, Ordem
+from models import Veiculo, Cliente, Ordem, db_session, Atividade
 from flask import Flask, render_template, request, redirect, url_for, request, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
 
@@ -10,23 +10,49 @@ spec = FlaskPydanticSpec('flask',
                          version='1.0.0', )
 spec.register(app)
 
+@app.route('/atividades', methods=['GET'])
+def atividades():
+    sql_atividades = select(Atividade, Cliente, Ordem, Veiculo).join(Cliente, Atividade.cliente_id == Cliente.id)
+    resultado_atividades = db_session.execute(sql_atividades).fetchall()
+    print(resultado_atividades)
+    return jsonify(resultado_atividades)
 
 
-@app.route('/clientes', methods=['GET'])
+@app.route('/clientes', methods=['POST'])
 def clientes():
-    return Cliente
+    sql_clientes = select(Cliente)
+    resultado_clientes = db_session.execute(sql_clientes).scalars()
+    lista_clientes = []
+    for cliente in resultado_clientes:
+        lista_clientes.append(cliente.serialize_cliente())
+        print(lista_clientes[-1])
+    return jsonify(lista_de_clientes=lista_clientes)
 
 
 
-@app.route('/veiculos', methods=['GET'])
+@app.route('/veiculos', methods=['POST'])
 def veiculos():
-    return Veiculo
+    sql_veiculos = select(Veiculo)
+    resultado_veiculos = db_session.execute(sql_veiculos).scalars()
+    lista_veiculos = []
+    for veiculo in resultado_veiculos:
+        lista_veiculos.append(veiculo.serialize_cliente())
+        print(lista_veiculos[-1])
+    return jsonify(lista_de_veiculos=lista_veiculos)
 
 
 
-@app.route('/ordem', methods=['GET'])
+
+@app.route('/ordem', methods=['POST'])
 def ordens_servicos():
-    return Ordem
+    sql_ordens = select(Ordem)
+    resultado_ordens = db_session.execute(sql_ordens).scalars()
+    lista_ordens = []
+    for ordem in resultado_ordens:
+        lista_ordens.append(ordem.serialize_cliente())
+        print(lista_ordens[-1])
+    return jsonify(lista_de_ordens=lista_ordens)
+
 
 
 
