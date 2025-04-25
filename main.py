@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, select
 from models import Veiculo, Cliente, Ordem, db_session, Atividade
 from flask import Flask, render_template, request, redirect, url_for, request, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
