@@ -15,20 +15,21 @@ spec.register(app)
 
 @app.route('/clientes', methods=['GET'])
 def clientes():
-
+    return 'clientes'
 
 
 
 
 @app.route('/veiculos', methods=['GET'])
 def veiculos():
-
+    return 'veiculos'
 
 
 
 @app.route('/ordem', methods=['GET'])
 def ordens_servicos():
     return ('ordem')
+
 
 
 if __name__ == '__main__':
