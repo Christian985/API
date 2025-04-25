@@ -15,8 +15,6 @@ Base = declarative_base()
 Base.query = db_session.query_property()
 
 
-
-
 # Veículos
 class Veiculo(Base):
     # Tabela de Veículos
@@ -85,7 +83,7 @@ class Cliente(Base):
         db_session.delete(self)
         db_session.commit()
 
-    # Função para Serializar
+    # Coloca os Dados na Tabela
     def serialize_user(self):
         dados_user = {
             'id_user': self.id,
@@ -153,7 +151,7 @@ class Ordem(Base):
         db_session.delete(self)
         db_session.commit()
 
-    # Função para Serializar
+    # Coloca os Dados na Tabela
     def serialize_user(self):
         dados_user = {
             'veiculo_associado': self.veiculo_associado,
