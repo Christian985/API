@@ -1,4 +1,4 @@
-from models import Cliente, Veiculo, db_session, Ordem_servicos
+from models import Cliente, Veiculo, db_session, Ordem
 from sqlalchemy import select
 
 # Inserir dados do Cliente na tabela
@@ -44,7 +44,7 @@ def deletar_cliente():
 
 # Insere Ordem na tabela
 def inserir_ordem():
-    ordem_servicos = Ordem_servicos(veiculo_associado=str(input('Veículo associado: ')),
+    ordem_servicos = Ordem(veiculo_associado=str(input('Veículo associado: ')),
                       data_abertura=str(input('Data abertura: ')),
                       descricao_servico=str(input('Descricao servico: ')),
                       status=str(input('Status: ')),
@@ -56,7 +56,7 @@ def inserir_ordem():
 
 # Consulta Ordem na tabela
 def consultar_ordem():
-    var_ordem = select(Ordem_servicos)
+    var_ordem = select(Ordem)
     var_ordem = db_session.execute(var_ordem).all()
     print(var_ordem)
     if __name__ == '__main__':
@@ -67,7 +67,7 @@ def consultar_ordem():
 # Atualiza Ordem na tabela
 def atualizar_ordem():
     # Seleciona o item a ser alterado
-    var_ordem = select(Ordem_servicos).where(str(input('Veículo associado: ')) == Ordem_servicos.veiculo_associado)
+    var_ordem = select(Ordem).where(str(input('Veículo associado: ')) == Ordem.veiculo_associado)
     var_ordem = db_session.execute(var_ordem).scalar()
     # Nova informação
     var_ordem.veiculo_associado = str(input('Novo Veículo associado: '))
@@ -77,7 +77,7 @@ def atualizar_ordem():
 # Deleta Ordem na tabela
 def deletar_ordem():
     ordem_deletar = input('Quem você deseja deletar? :')
-    var_ordem = select(Ordem_servicos).where(ordem_deletar == Ordem_servicos.veiculo_associado)
+    var_ordem = select(Ordem).where(ordem_deletar == Ordem.veiculo_associado)
     var_ordem = db_session.execute(var_ordem).scalar()
     var_ordem.delete()
 

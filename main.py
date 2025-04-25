@@ -12,11 +12,9 @@ spec.register(app)
 
 
 
-
 @app.route('/clientes', methods=['GET'])
 def clientes():
     return 'clientes'
-
 
 
 
@@ -28,7 +26,7 @@ def veiculos():
 
 @app.route('/ordem', methods=['GET'])
 def ordens_servicos():
-    return ('ordem')
+    return 'ordem'
 
 
 

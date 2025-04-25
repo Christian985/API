@@ -119,7 +119,7 @@ class Atividade(Base):
 
 
 # Ordens e Serviços
-class Ordem_servicos(Base):
+class Ordem(Base):
     __tablename__ = 'ordens'
     id = Column(Integer, primary_key=True)
     veiculo_associado = Column(String(100), nullable=False, index=True)
@@ -130,7 +130,7 @@ class Ordem_servicos(Base):
 
     # Representação classe
     def __repr__(self):
-        return '<Ordem_servicos: {} {} {} {} {}>'.format(self.veiculo_associado,
+        return '<Ordem: {} {} {} {} {}>'.format(self.veiculo_associado,
                                                          self.data_abertura,
                                                          self.descricao_servico,
                                                          self.status,
