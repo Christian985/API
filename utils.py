@@ -26,12 +26,24 @@ def atualizar_cliente():
     # Altera o nome do cliente
     var_cliente = select(Cliente).where(str(input('Nome: ')) == Cliente.nome)
     var_cliente = db_session.execute(var_cliente).scalar()
+
     # Altera o cpf do cliente
     var_cliente = select(Cliente).where(int(input('Cpf: ')) == Cliente.cpf)
     var_cliente = db_session.execute(var_cliente).scalar()
-    # Nova informação de nome
+
+    # Altera o telefone do cliente
+    var_cliente = select(Cliente).where(int(input('Telefone: ')) == Cliente.telefone)
+    var_cliente = db_session.execute(var_cliente).scalar()
+
+    # Altera o endereço do cliente
+    var_cliente = select(Cliente).where(str(input('Endereço: ')) == Cliente.endereco)
+    var_cliente = db_session.execute(var_cliente).scalar()
+
+    # Nova informação de cliente
     var_cliente.nome = str(input('Novo Nome: '))
     var_cliente.cpf = str(input('Novo CPF: '))
+    var_cliente.telefone = int(input('Novo Telefone: '))
+    var_cliente.endereco = str(input('Novo endereço: '))
     var_cliente.save()
 
 
