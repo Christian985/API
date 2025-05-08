@@ -1,5 +1,23 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base, relationship
+from dotenv import load_dotenv
+import os  # Criar variável de ambiente '.env'
+import configparser  # Criar arquivo de configuração 'config.ini'
+
+
+# Configurar Banco Vercel
+# Ler variável de ambiente
+load_dotenv()
+# Carregue as configurações do Banco de Dados
+url_ = os.environ.get("DATABASE_URL")
+print(f'modo1:{url_}')
+
+# Carregue o arquivo de configuração
+config = configparser.ConfigParser()
+config.read('config.ini')
+# Obtenha as configurações do Banco de Dados
+database_url =config['database']['url']
+print(f'mode2:{database_url}')
 
 # Configuração com a conexão com o Banco de Dados
 engine = create_engine('sqlite:///atividades.sqlite3')
