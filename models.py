@@ -116,7 +116,7 @@ class Cliente(Base):
         return dados_user
 
 
-# Atividade
+# Atividades
 class Atividade(Base):
     # Tabela de Atividades
     __tablename__ = 'atividades'
