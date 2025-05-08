@@ -8,6 +8,7 @@ import configparser  # Criar arquivo de configuração 'config.ini'
 # Configurar Banco Vercel
 # Ler variável de ambiente
 load_dotenv()
+
 # Carregue as configurações do Banco de Dados
 url_ = os.environ.get("DATABASE_URL")
 print(f'modo1:{url_}')
