@@ -19,7 +19,7 @@ def atividades():
 
 
 
-@app.route('/nova_categoria', methods=['GET'])
+@app.route('/nova_categoria', methods=['POST'])
 def criar_categoria():
     if request.method == 'GET':
         if not request.form['form_categoria']:
