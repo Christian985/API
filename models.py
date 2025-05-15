@@ -38,6 +38,9 @@ Base.query = db_session.query_property()
 
 
 # Veículos
+# Dados mais importantes:
+# 1 - ID
+# 2 - cliente_associado
 class Veiculo(Base):
     # Tabela de Veículos
     __tablename__ = 'veiculos'
@@ -79,6 +82,12 @@ class Veiculo(Base):
 
 
 # Clientes
+# Dados mais importantes:
+# 1 - ID
+# 2 - nome
+# 3 - cpf
+# 4 - telefone
+# 5 - endereco
 class Cliente(Base):
     # Tabela de Clientes
     __tablename__ = 'clientes'
@@ -118,6 +127,16 @@ class Cliente(Base):
 
 
 # Atividades
+# Dados mais importantes:
+# 1 - ID
+# 2 - nome
+# 3 - cpf
+# 4 - telefone
+# 5 - endereco
+# 6 - cliente_associado
+# 7 - status
+# 8 - descricao_servico
+# 9 - valor_estimado
 class Atividade(Base):
     # Tabela de Atividades
     __tablename__ = 'atividades'
@@ -146,6 +165,11 @@ class Atividade(Base):
 
 
 # Ordens e Serviços
+# Dados mais importantes:
+# 1 - ID
+# 2 - status
+# 3 - descricao_servico
+# 4 - valor_estimado
 class Ordem(Base):
     # Tabela de Ordens e Serviços
     __tablename__ = 'ordens'
