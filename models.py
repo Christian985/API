@@ -41,6 +41,7 @@ Base.query = db_session.query_property()
 # Dados mais importantes:
 # 1 - ID
 # 2 - cliente_associado
+# 3 - placa
 class Veiculo(Base):
     # Tabela de Veículos
     __tablename__ = 'veiculos'
