@@ -42,6 +42,12 @@ Base.query = db_session.query_property()
 # 1 - ID
 # 2 - cliente_associado
 # 3 - placa
+
+# Mais precisam de controle:
+# 1 - modelo
+# 2 - ano_fabricacao
+# 3 - marca
+# 4 - placa
 class Veiculo(Base):
     # Tabela de Veículos
     __tablename__ = 'veiculos'
@@ -89,6 +95,12 @@ class Veiculo(Base):
 # 3 - cpf
 # 4 - telefone
 # 5 - endereco
+
+# Mais precisam de controle:
+# 1 - nome
+# 2 - cpf
+# 3 - telefone
+# 4 - endereco
 class Cliente(Base):
     # Tabela de Clientes
     __tablename__ = 'clientes'
@@ -138,6 +150,16 @@ class Cliente(Base):
 # 7 - status
 # 8 - descricao_servico
 # 9 - valor_estimado
+
+# Mais precisam de controle:
+# 1 - nome
+# 2 - cpf
+# 3 - telefone
+# 4 - endereco
+# 5 - modelo
+# 6 - ano_fabricacao
+# 7 - marca
+# 8 - placa
 class Atividade(Base):
     # Tabela de Atividades
     __tablename__ = 'atividades'
@@ -171,6 +193,13 @@ class Atividade(Base):
 # 2 - status
 # 3 - descricao_servico
 # 4 - valor_estimado
+
+# Mais precisam de controle:
+# 1 - veiculo_associado
+# 2 - data_abertura
+# 3 - descricao_servico
+# 4 - status
+# 5 - valor_estimado
 class Ordem(Base):
     # Tabela de Ordens e Serviços
     __tablename__ = 'ordens'
@@ -210,9 +239,10 @@ class Ordem(Base):
         return dados_user
 
 
-# Método para criar banco
+# Método para criar Banco
 def init_db():
     Base.metadata.create_all(bind=engine)
 
+# Iniciar o Banco
 if __name__ == '__main__':
     init_db()

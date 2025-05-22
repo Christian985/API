@@ -1,6 +1,7 @@
 from models import Cliente, Veiculo, db_session, Ordem
 from sqlalchemy import select
 
+
 # Inserir dados do Cliente na tabela
 def inserir_cliente():
     cliente = Cliente(nome=str(input('Nome: ')),
@@ -73,7 +74,7 @@ def inserir_veiculo():
                       modelo=str(input('Modelo: ')),
                       placa=str(input('Placa: ')),
                       ano_fabricacao=int(input('Ano de Fabricação: ')),
-                      marca=str(input('Marca: ')),)
+                      marca=str(input('Marca: ')), )
     print(veiculo)
     veiculo.save()
 
@@ -135,16 +136,17 @@ def deletar_veiculo():
     var_veiculo = db_session.execute(var_veiculo).scalar()
     var_veiculo.delete()
 
+
 # FIM DO VEÍCULO
 
 # Insere Ordem na tabela
 def inserir_ordem():
     ordem_servicos = Ordem(veiculo_associado=str(input('Veículo associado: ')),
-                      data_abertura=str(input('Data abertura: ')),
-                      descricao_servico=str(input('Descricao servico: ')),
-                      status=str(input('Status: ')),
-                      valor_estimado=int(input('Valor estimado: ')),
-                      )
+                           data_abertura=str(input('Data abertura: ')),
+                           descricao_servico=str(input('Descricao servico: ')),
+                           status=str(input('Status: ')),
+                           valor_estimado=int(input('Valor estimado: ')),
+                           )
     print(ordem_servicos)
     ordem_servicos.save()
 
