@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, select
 from models import Veiculo, Cliente, Ordem, db_session, Atividade
-from flask import Flask, render_template, request, redirect, url_for, request, jsonify
+from flask import Flask, request, redirect, url_for, request, jsonify
 from flask_pydantic_spec import FlaskPydanticSpec
 
 app = Flask(__name__)
@@ -10,6 +10,7 @@ spec = FlaskPydanticSpec('flask',
                          version='1.0.0', )
 spec.register(app)
 
+
 @app.route('/atividades', methods=['GET'])
 def atividades():
     sql_atividades = select(Atividade, Cliente, Ordem, Veiculo).join(Cliente, Atividade.cliente_id == Cliente.id)
@@ -18,22 +19,20 @@ def atividades():
     return jsonify(resultado_atividades)
 
 
-
-@app.route('/nova_categoria', methods=['POST'])
-def criar_categoria():
-    if request.method == 'GET':
-        if not request.form['form_categoria']:
-            return jsonify({'Erro'})
-        else:
-            form_evento = Categoria(nome_categoria=request.form['form_categoria'])
-            print(form_evento)
-            form_evento.save()
-            db_session.close()
-            jsonify({'Categoria criada', 'Sucesso'})
-            return redirect(url_for('categoria'))
-
-    return jsonify({'Erro'})
-
+# @app.route('/nova_categoria', methods=['POST'])
+# def criar_categoria():
+#     if request.method == 'GET':
+#         if not request.form['form_categoria']:
+#             return jsonify({'Erro'})
+#         else:
+#             form_evento = Categoria(nome_categoria=request.form['form_categoria'])
+#             print(form_evento)
+#             form_evento.save()
+#             db_session.close()
+#             jsonify({'Categoria criada', 'Sucesso'})
+#             return redirect(url_for('categoria'))
+#
+#     return jsonify({'Erro'})
 
 
 @app.route('/clientes', methods=['POST'])
@@ -47,7 +46,6 @@ def clientes():
     return jsonify(lista_de_clientes=lista_clientes)
 
 
-
 @app.route('/veiculos', methods=['POST'])
 def veiculos():
     sql_veiculos = select(Veiculo)
@@ -57,7 +55,6 @@ def veiculos():
         lista_veiculos.append(veiculo.serialize_cliente())
         print(lista_veiculos[-1])
     return jsonify(lista_de_veiculos=lista_veiculos)
-
 
 
 @app.route('/ordem', methods=['POST'])
@@ -71,6 +68,5 @@ def ordens_servicos():
     return jsonify(lista_de_ordens=lista_ordens)
 
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5001)
